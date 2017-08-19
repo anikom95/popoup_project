@@ -4,6 +4,8 @@ from PyQt5.QtMultimedia import QSound
 import sys
 from random import randint
 
+#please make sure you have your sound turned on
+
 class PopupWindow(QMainWindow):
     width = 370
     height = 300
@@ -27,6 +29,7 @@ class PopupWindow(QMainWindow):
         self.button.setGeometry(30,230,120,50)
         self.button.setObjectName("button")
 
+        #"title bar"
         self.but1 = QPushButton("", self)
         self.but1.clicked.connect(self.tryClose)
         self.but1.setGeometry(305,0,20,20)
@@ -47,17 +50,16 @@ class PopupWindow(QMainWindow):
         self.sound.play()
         self.sound.setLoops(20)
 
-    def scatter(self):
-        for win in self.PopupWindow:
-            win.move(randint(50, self.width + 400), randint(1, self.height + 200))
-
-
     def tryClose(self):
         for i in range(1):
             newwin = PopupWindow()
             newwin.setVisible(True)
             self.PopupWindow.append(newwin)
         self.scatter()
+
+    def scatter(self):
+        for win in self.PopupWindow:
+            win.move(randint(50, self.width + 400), randint(1, self.height + 200))
 
 
 if __name__ == '__main__':
